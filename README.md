@@ -21,6 +21,10 @@ We note that **SiaILP solo** refers to using only the subgraph-based model. **Si
 
 **Entity corrupted ranking**: Similarly, we replace the relation r in a ground-truth triple (s, r, t) by r_1, r_2, etc. Then, we descend (s, r_1, t), (s, r_2, t), ... according to the output of the model, and observe the rank of the ground-truth triple as the performance of the model.
 
+#### Model Advantage:
+
+The major advantage of SiaILP model is that it is purely path-based: The model relies on no entity embeddings. All learned information is topological structure of the knowledge graph. As a result, SiaILP can be directly used for "strict" inductive link prediction without any fine-tuning. Also, since no entity embedding is required, the size of our SiaILP model can be small enough. This becomes a huge advantage when link prediction is required on industrial knowledge graphs involving billions of entities and changed dynamically. 
+
 ### Install/Usage
 
 To install SiaILP, one can implement the following steps:
