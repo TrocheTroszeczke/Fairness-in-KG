@@ -790,30 +790,38 @@ if __name__ == "__main__":
     
     #shuffle positive and negative triples (optional)
     all_triples, y_test = shuffle(all_triples, y_test)
-    
+
+    print("all triples")
+    print(all_triples)
+
     #obtain the score aray
     y_score = np.zeros((len(y_test),))
     
     #implement the scoring
-    for i in tqdm(range(len(all_triples)), desc='relation corrupted ranking: evaluating'):
-        
-        s, r, t = all_triples[i][0], all_triples[i][1], all_triples[i][2]
-        
-        #path_score = path_based_triple_scoring(s, r, t, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
-        
-        subg_score = subgraph_triple_scoring(s, r, t, lower_bound, upper_bound_subg, one_hop_ind, id2relation, model_2)
-        
-        #ave_score = (path_score + subg_score)/float(2)
-        
-        #y_score[i] = ave_score
-        y_score[i] = subg_score
-        
-        if i % 20 == 0 and i > 0:
-            #print('evaluating scores', i, len(all_triples))
-            auc_ = metrics.roc_auc_score(y_test[:i], y_score[:i])
-            auc_pr = metrics.average_precision_score(y_test[:i], y_score[:i])
-            #print('auc, auc-pr', auc_, auc_pr)
-            
+
+    with open(f'fairness/{data_name}.txt', "w") as f:
+        for i in tqdm(range(len(all_triples)), desc='relation corrupted ranking: evaluating'):
+
+            s, r, t = all_triples[i][0], all_triples[i][1], all_triples[i][2]
+
+            #path_score = path_based_triple_scoring(s, r, t, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
+
+            subg_score = subgraph_triple_scoring(s, r, t, lower_bound, upper_bound_subg, one_hop_ind, id2relation, model_2)
+
+            #ave_score = (path_score + subg_score)/float(2)
+
+            #y_score[i] = ave_score
+            y_score[i] = subg_score
+
+            if i % 20 == 0 and i > 0:
+                #print('evaluating scores', i, len(all_triples))
+                auc_ = metrics.roc_auc_score(y_test[:i], y_score[:i])
+                auc_pr = metrics.average_precision_score(y_test[:i], y_score[:i])
+                #print('auc, auc-pr', auc_, auc_pr)
+
+            f.write(f'{id2entity[s]}	{id2relation[r]}	{id2entity[t]}	{y_test[i]}	{y_score[i]:.4f}\n')
+            print(id2entity[s], id2relation[r], id2entity[t])
+
     #print('evaluating scores', i, len(all_triples))
     auc_ = metrics.roc_auc_score(y_test, y_score)
     auc_pr = metrics.average_precision_score(y_test, y_score)
