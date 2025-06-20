@@ -1,0 +1,7 @@
+/award/award_nominee/award_nominations./award/award_nomination/nominated_for
+/award/award_winner/awards_won./award/award_honor/award_winner
+/education/educational_institution/students_graduates./education/education/student
+/film/actor/film./film/performance/film
+/people/person/gender
+/people/person/profession
+/tv/tv_program/languages

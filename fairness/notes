@@ -1,0 +1,5 @@
+w zbiorze treningowym musi być graf, w którym istnieją takie 2 elementy, midzy którymi są min. 2 ścieżki o długości min 3
+do testowania w folderze ind (w pliku test i train) muszą występować nowe wierzchołki
+graf musi być na tyle rzadki, żeby program mógł wymyślić swoje krawędzie nieistniejące w żadnym pliku (kilka razy)
+
+może spróbować przefiltrować tylko krawędzie /person/ ?

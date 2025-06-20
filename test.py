@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 import numpy as np
@@ -175,6 +176,8 @@ class ObtainPathsByDynamicProgramming:
             raise TypeError("!!! lower bound must not exced upper bound !!!")
             
         if s not in one_hop:
+            print("s", s)
+            print("id2entity(s)", id2entity[s])
             
             raise ValueError('!!! entity not in one_hop. Please work on existing entities')
 
@@ -662,6 +665,8 @@ if __name__ == "__main__":
     
     len_0 = len(relation2id)
     size_0 = len(entity2id)
+
+    print(len(relation2id), relation2id)
     
     #fill in the sets and dicts
     Class_1.load_train_data(ind_train_path, 
@@ -670,6 +675,8 @@ if __name__ == "__main__":
     
     len_1 = len(relation2id)
     size_1 = len(entity2id)
+
+    print(len(relation2id), relation2id)
     
     if len_0 != len_1:
         raise ValueError('unseen relation!')
@@ -717,15 +724,18 @@ if __name__ == "__main__":
 
     #obtain all the inital entities and new entities
     ini_ent_set, new_ent_set, all_ent_set = set(), set(), set()
+    print("id2entity", id2entity)
     
     for ID in id2entity:
         all_ent_set.add(ID)
         if ID in id2entity_ini:
+            print("ini_ent_set.add ", id2entity[ID])
             ini_ent_set.add(ID)
         else:
+            print("nw_ent_set.add ", ID)
             new_ent_set.add(ID)
             
-    #print(len(ini_ent_set), len(new_ent_set), len(all_ent_set))
+    # print(len(ini_ent_set), len(new_ent_set), len(all_ent_set))
     
     
     
@@ -744,9 +754,12 @@ if __name__ == "__main__":
         
         #decide to replace the head or tail entity
         number_0 = random.uniform(0, 1)
+        print("\nnumber_0", number_0)
+
+        print("\nnew_ent_set", new_ent_set)
+        print("list(new_ent_set)", list(new_ent_set))
         
         if number_0 < 0.5: #replace head entity
-            
             s_neg = random.choice(list(new_ent_set))
             
             #filter out the existing triples
@@ -758,22 +771,28 @@ if __name__ == "__main__":
                    (s_neg, r_pos, t_pos) in data_ind_test):
                 
                 s_neg = random.choice(list(new_ent_set))
+                print("s_neg", s_neg)
             
             neg_triples.append((s_neg, r_pos, t_pos))
         
         else: #replace tail entity
     
             t_neg = random.choice(list(new_ent_set))
+
+            i=0
             
             #filter out the existing triples
-            while ((s_pos, r_pos, t_neg) in data_test) or (
+            while (((s_pos, r_pos, t_neg) in data_test) or (
                    (s_pos, r_pos, t_neg) in data_valid) or (
                    (s_pos, r_pos, t_neg) in data) or (
                    (s_pos, r_pos, t_neg) in data_ind) or (
                    (s_pos, r_pos, t_neg) in data_ind_valid) or (
-                   (s_pos, r_pos, t_neg) in data_ind_test):
+                   (s_pos, r_pos, t_neg) in data_ind_test)) and i<6:
                 
                 t_neg = random.choice(list(new_ent_set))
+                print("t_neg", t_neg)
+                print(neg_triples)
+                i+=1
             
             neg_triples.append((s_pos, r_pos, t_neg))
     
@@ -800,6 +819,7 @@ if __name__ == "__main__":
     #implement the scoring
 
     with open(f'fairness/{data_name}.txt', "w") as f:
+        print("all triples [0]", all_triples[0])
         for i in tqdm(range(len(all_triples)), desc='relation corrupted ranking: evaluating'):
 
             s, r, t = all_triples[i][0], all_triples[i][1], all_triples[i][2]
@@ -876,6 +896,7 @@ if __name__ == "__main__":
                        (s_neg, r_pos, t_pos) in data_ind_test):
     
                     s_neg = random.choice(list(new_ent_set))
+                    print(s_neg)
                 
                 #path_score = path_based_triple_scoring(s_neg, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
     
@@ -898,6 +919,7 @@ if __name__ == "__main__":
                        (s_pos, r_pos, t_neg) in data_ind_test):
     
                     t_neg = random.choice(list(new_ent_set))
+                    print(t_neg)
                 
                 #path_score = path_based_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
     

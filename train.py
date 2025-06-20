@@ -922,8 +922,12 @@ if __name__ == "__main__":
     build_big_batches_path(lower_bd, upper_bd, data_valid, one_hop_valid, s_t_r_valid,
                           valid_p_list, valid_r_list, valid_y_list,
                           relation2id, entity2id, id2relation, id2entity)    
-    
-    
+
+    print("ania lists")
+    print(train_p_list)
+    print(train_y_list)
+
+    print("\nania arrays")
 
     ############################################
     ###train connection-based model#############
@@ -962,7 +966,9 @@ if __name__ == "__main__":
         x_valid_3 = np.asarray(train_p_list['3'][split:], dtype='int')
         x_valid_r = np.asarray(train_r_list[split:], dtype='int')
         y_valid = np.asarray(train_y_list[split:], dtype='int')
-    
+
+    print([x_train_1, x_train_2, x_train_3, x_train_r])
+    print(y_train)
     #do the training
     model.fit([x_train_1, x_train_2, x_train_3, x_train_r], y_train, 
               validation_data=([x_valid_1, x_valid_2, x_valid_3, x_valid_r], y_valid),
