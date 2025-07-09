@@ -1,5 +1,0 @@
-node6   rel1    node2
-node3   rel1    node1
-node2   rel1    node3
-node3   rel2    node1
-node5   rel1    node4

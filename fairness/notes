@@ -3,3 +3,12 @@ do testowania w folderze ind (w pliku test i train) muszą występować nowe wie
 graf musi być na tyle rzadki, żeby program mógł wymyślić swoje krawędzie nieistniejące w żadnym pliku (kilka razy)
 
 może spróbować przefiltrować tylko krawędzie /person/ ?
+
+p. Misiorek dostępny po 27 lipca
+
+PLAN DZIAŁANIA
+0. podesłać link do githuba
+1. dokończyć liczenie fairness
+2. dodatkowo dołożyć więcej miar jakości (precision?)
+3. pierwsza próba: powielać dane na temat mniejszej grupy, żeby stosunek się wyrównał
+4. mocno podkreślać w tekście używanie kg
