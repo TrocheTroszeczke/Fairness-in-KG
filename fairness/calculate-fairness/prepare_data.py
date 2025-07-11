@@ -1,38 +1,11 @@
+import csv
+
 def read_prediction(prediction_file, prediction_path, sensitive_path):
     records = {}
-
-    # with open(prediction_file, 'r', encoding='utf-8') as f:
-        # # zapisujemy zawody
-        # for line in f:
-        #     # print(line)
-        #     node1, edge, node2, score, pred_score = line.strip().split()
-        #     score = int(float(score))
-        #     pred_score = float(pred_score)
-        #
-        #     if edge != sensitive_path:  #jeśli nie znamy zawodu, to nie ma co oceniać
-        #         continue
-        #
-        #     if node1 not in records.keys():
-        #         records[node1] = {
-        #             "node": node1,  #id
-        #             "pred_label": None,    #płeć przewidziana (nie znamy jeszcze)
-        #             "sensitive_score": pred_score,
-        #             "pred_score": None,
-        #             "true_label": None,     #płeć prawdziwa (nie znamy jeszcze)
-        #             "sensitive_label": node2     #zawód
-        #         }
-        #     else:       #podmieniamy zawód, jeśli inny ma wyższy score
-        #         if pred_score > records[node1]["sensitive_score"]:
-        #             records[node1]["sensitive_label"] = node2
-        #             records[node1]["sensitive_score"] = pred_score
-        #
-        # print(records)
-
 
     # zapisujemy zawody
     with open(prediction_file, 'r', encoding='utf-8') as f:
         for line in f:
-            # print(line)
             node1, edge, node2, score, pred_score = line.strip().split()
             score = int(float(score))
             pred_score = float(pred_score)
@@ -41,22 +14,15 @@ def read_prediction(prediction_file, prediction_path, sensitive_path):
                 continue
 
             if node1 not in records.keys():     #rozpoznajemy zawód po raz pierwszy
-                # continue
                 records[node1] = {
                     "node": node1,  #id
                     "pred_label": node2,    #przewidziany zawód
-                    # "sensitive_score": pred_score,
                     "pred_score": pred_score,
                     "true_label": None,     #prawdziwy zawód (nie znamy jeszcze)
                     "sensitive_label": None  #prawdziwa płeć (nie znamy jeszcze)
                 }
                 if score == 1:
                     records[node1]["true_label"] = node2    #prawdziwy zawód
-            # elif records[node1]["pred_label"] is None:  #jeśli to nasze pierwsze odgadywanie płci, to zapsujemy wyniki
-            #     records[node1]["pred_label"] = node2
-            #     records[node1]["pred_score"] = pred_score
-            #     if score == 1:
-            #         records[node1]["true_label"] = node2
             else:
                 if pred_score > records[node1]["pred_score"]:      #jeśli mamy lepszy wynik przewidywania płci, to zamieniamy
                     records[node1]["pred_label"] = node2
@@ -97,9 +63,7 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
                     predictions[node1]["true_label"] = node2
 
             if len(matches) == 0:
-                # print("del", predictions[pred])
                 if pred in updated_predictions.keys():
-                    # print("del", pred)
                     del updated_predictions[pred]
         else:
             continue
@@ -124,28 +88,6 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
 
     print(updated_predictions)
     return updated_predictions
-
-
-    # Zbierz linie z pliku source_file, które zawierają wierzchołki z node_file
-    # new_lines = []
-    # with open(source_file, 'r', encoding='utf-8') as sf:
-    #     for line in sf:
-    #         parts = line.strip().split()
-    #         if len(parts) == 3:
-    #             node1, edge, node2 = parts
-    #             if node1 in nodes or node2 in nodes:
-    #                 new_lines.append(line)
-    #                 edges.add(edge)
-    #
-    # # Dodajemy linie do pliku wynikowego
-    # with open(extended_output_file, 'a', encoding='utf-8') as out:
-    #     out.writelines(new_lines)
-
-    # Zapisujemy unikalne krawędzie
-    # with open(edge_output_file, 'w', encoding='utf-8') as ef:
-    #     for edge in sorted(edges):
-    #         ef.write(edge + '\n')
-
 
 if __name__ == "__main__":
     # przewidujemy zawód i jeśli znamy prawdziwy, to go zapisujemy
@@ -175,11 +117,21 @@ if __name__ == "__main__":
 
     print(prediction_dict.values())
 
-    output_file = "person-data-output.txt"
+    output_file = "person-data-output.csv"
 
-    with open(output_file, 'w', encoding='utf-8') as out:
-        for dict in prediction_dict.values():
-            line = f'{dict["node"]} {dict["pred_label"]} {dict["true_label"]} {dict["sensitive_label"]}\n'
-            # print(line)
-            out.write(line)
+    # with open(output_file, 'w', encoding='utf-8') as out:
+    #     for dict in prediction_dict.values():
+    #         line = f'{dict["node"]} {dict["pred_label"]} {dict["true_label"]} {dict["sensitive_label"]}\n'
+    #         # print(line)
+    #         out.write(line)
+
+    with open("person-data-output.csv", 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        row = ["id", "predicted_label", "true_label", "sensitive_label"]
+        writer.writerow(row)
+        for d in prediction_dict.values():
+            row = [d["node"], d["pred_label"], d["true_label"], d["sensitive_label"]]
+            writer.writerow(row)
+        # spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+        # spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
 
