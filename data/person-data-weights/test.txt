@@ -727,6 +727,3 @@
 /m/02b29	/people/person/religion	/m/03_gx
 /m/029ghl	/people/person/spouse_s./people/marriage/type_of_union	/m/01g63y
 /m/01y9xg	/people/person/gender	/m/02zsn
-/m/01qnfc	/people/person/profession	/m/02hrh1q
-/m/016gkf	/people/person/profession	/m/02jknp
-/m/02g8h	/people/person/profession	/m/02hrh1q
