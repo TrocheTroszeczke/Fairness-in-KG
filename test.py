@@ -896,7 +896,7 @@ if __name__ == "__main__":
                        (s_neg, r_pos, t_pos) in data_ind_test):
     
                     s_neg = random.choice(list(new_ent_set))
-                    print(s_neg)
+                    # print(s_neg)
                 
                 #path_score = path_based_triple_scoring(s_neg, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
     
@@ -919,7 +919,7 @@ if __name__ == "__main__":
                        (s_pos, r_pos, t_neg) in data_ind_test):
     
                     t_neg = random.choice(list(new_ent_set))
-                    print(t_neg)
+                    # print(t_neg)
                 
                 #path_score = path_based_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
     

@@ -91,47 +91,39 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
 
 if __name__ == "__main__":
     # przewidujemy zawód i jeśli znamy prawdziwy, to go zapisujemy
-    # tmp_prediction_dict = read_prediction(
-    #     prediction_file='../person-data.txt',
-    #     sensitive_path='/people/person/gender',
-    #     prediction_path='/people/person/profession'
-    # )
-    # prediction_dict = read_sources(
-    #     predictions=tmp_prediction_dict,
-    #     source_folder="person-data",
-    #     sensitive_path='/people/person/gender',
-    #     prediction_path='/people/person/profession'
-    # )
-
     tmp_prediction_dict = read_prediction(
         prediction_file='../person-data.txt',
-        sensitive_path='/people/person/nationality',
+        sensitive_path='/people/person/gender',
         prediction_path='/people/person/profession'
     )
     prediction_dict = read_sources(
         predictions=tmp_prediction_dict,
         source_folder="person-data",
-        sensitive_path='/people/person/nationality',
+        sensitive_path='/people/person/gender',
         prediction_path='/people/person/profession'
     )
 
+    # tmp_prediction_dict = read_prediction(
+    #     prediction_file='../person-data.txt',
+    #     sensitive_path='/people/person/nationality',
+    #     prediction_path='/people/person/profession'
+    # )
+    # prediction_dict = read_sources(
+    #     predictions=tmp_prediction_dict,
+    #     source_folder="person-data",
+    #     sensitive_path='/people/person/nationality',
+    #     prediction_path='/people/person/profession'
+    # )
+
     print(prediction_dict.values())
 
-    output_file = "person-data-output.csv"
+    # output_file = "{file}-{sensitive}-{prediction}.csv"
+    output_file = "person-data-gender-profession.csv"
 
-    # with open(output_file, 'w', encoding='utf-8') as out:
-    #     for dict in prediction_dict.values():
-    #         line = f'{dict["node"]} {dict["pred_label"]} {dict["true_label"]} {dict["sensitive_label"]}\n'
-    #         # print(line)
-    #         out.write(line)
-
-    with open("person-data-output.csv", 'w', newline='') as csvfile:
+    with open(output_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         row = ["id", "predicted_label", "true_label", "sensitive_label"]
         writer.writerow(row)
         for d in prediction_dict.values():
             row = [d["node"], d["pred_label"], d["true_label"], d["sensitive_label"]]
             writer.writerow(row)
-        # spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
-        # spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
-

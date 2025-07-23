@@ -1,8 +1,0 @@
-node2	rel2	node4	1.0	0.0000
-node5	rel1	node3	1.0	0.0000
-node6	rel1	node3	0.0	0.6488
-node6	rel2	node4	0.0	0.0000
-node4	rel1	node3	1.0	0.0000
-node6	rel2	node1	1.0	0.6153
-node6	rel2	node5	0.0	0.0000
-node5	rel1	node5	0.0	0.0000

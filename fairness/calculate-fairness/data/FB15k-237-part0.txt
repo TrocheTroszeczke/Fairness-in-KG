@@ -1,8 +1,0 @@
-node2	test1/test2/rel1	node4	1.0	0.5567
-node5	test1/test2/rel1	node1	0.0	0.5701
-node5	test1/test2/rel1	node1	0.0	0.5918
-node5	test1/test2/rel1	node5	0.0	0.5948
-node4	test1/test2/rel1	node1	1.0	0.5272
-node5	test1/test2/rel1	node2	1.0	0.6178
-node2	test1/test2/rel1	node5	0.0	0.5469
-node3	test1/test2/rel1	node1	1.0	0.5508
