@@ -47,13 +47,15 @@ def read_sources(source_file, source_folder, sensitive_path, prediction_path, af
         if ((predDict[person], sensDict[person]) in affected_pairs):
             # print((predDict[person], sensDict[person]))
             output.append(f'{person}\t{prediction_path}\t{predDict[person]}\n')
+            output.append(f'{person}\t{prediction_path}\t{predDict[person]}\n')
+            output.append(f'{person}\t{prediction_path}\t{predDict[person]}\n')
 
     return output
 
 
 if __name__ == "__main__":
     dataWithWeights = read_sources(
-        source_file="..\\..\\data\\person-data_ind\\train.txt",
+        source_file="..\\..\\data\\person-data\\valid.txt",
         source_folder="person-data",
         sensitive_path='/people/person/nationality',
         prediction_path='/people/person/profession',
@@ -63,7 +65,7 @@ if __name__ == "__main__":
     # print(dataWithWeights)
 
     # # output_file = "{file}-{sensitive}-{prediction}.csv"
-    output_file = "..\\..\\data\\person-data-weights_ind\\train.txt"
+    output_file = "..\\..\\data\\person-data-weights\\valid.txt"
 
     with open(output_file, "w") as f:
         for item in dataWithWeights:

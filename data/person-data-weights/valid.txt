@@ -674,6 +674,12 @@
 /m/01tj34	/people/person/profession	/m/02hrh1q
 /m/02f_k_	/people/person/profession	/m/01d_h8
 /m/01pjr7	/people/person/profession	/m/02hrh1q
-/m/01j2xj	/people/person/profession	/m/02jknp
-/m/015nvj	/people/person/profession	/m/02jknp
 /m/016gr2	/people/person/profession	/m/02jknp
+/m/016gr2	/people/person/profession	/m/02jknp
+/m/016gr2	/people/person/profession	/m/02jknp
+/m/015nvj	/people/person/profession	/m/02jknp
+/m/015nvj	/people/person/profession	/m/02jknp
+/m/015nvj	/people/person/profession	/m/02jknp
+/m/01j2xj	/people/person/profession	/m/02jknp
+/m/01j2xj	/people/person/profession	/m/02jknp
+/m/01j2xj	/people/person/profession	/m/02jknp

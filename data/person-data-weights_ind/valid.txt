@@ -532,3 +532,5 @@
 /m/02x08c	/people/person/places_lived./people/place_lived/location	/m/04ykg
 /m/036c_0	/people/person/profession	/m/02jknp
 /m/05bp8g	/people/person/profession	/m/02hrh1q
+/m/05bp8g	/people/person/profession	/m/02hrh1q
+/m/05bp8g	/people/person/profession	/m/02hrh1q
