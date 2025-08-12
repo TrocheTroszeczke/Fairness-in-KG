@@ -12,3 +12,25 @@ PLAN DZIAŁANIA
 2. dodatkowo dołożyć więcej miar jakości (precision?)
 3. pierwsza próba: powielać dane na temat mniejszej grupy, żeby stosunek się wyrównał
 4. mocno podkreślać w tekście używanie kg
+
+
+od linii 89 w train.py -> te wagi chyba nie mają prawa działać, skoro my tu tworzymy słownik i uczymy później na słowniku; słownik będzie chyba robił set?
+
+1. /m/05zppz mam w swoim person-data odfiltrowaną tę płeć, więc mam cały czas tę samą - zmienić
+2. skrócić test.txt do tylko takich, co nas interesują (profession / gender / profession + gender)
+3. zmienić sposób testowania: jeśli przewidujemy gender, to neg to zamiana mężczyzn na kobiety;
+    w przypadku zawodu to zamiana na losowy zawód spośród wszystkich innych wykorzystanych
+---napisać maila / slack---
+4?. wagi nie będą działać, więc można jako preprocessing zamienić w trainsecie niektórych mężczyzn na kobiety, żeby ich osłabić
+5?. proste ocenianie fairness: względem jednej cechy
+
+gender:
+AUC 0.503100754382668
+AUC-PR 0.525704357676418
+
+dodawać 1 do tych rekomendacji, które są najwyższe (lub odejmować te, które są niewybrane);
+np. mężczyzna 0.856 kobieta 0.82 -> m 0.856 k 0.82-1= -0.18
+
+
+
+

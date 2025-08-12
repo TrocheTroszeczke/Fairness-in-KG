@@ -1,4 +1,6 @@
 import csv
+import uuid
+
 
 def read_prediction(prediction_file, prediction_path, sensitive_path):
     records = {}
@@ -14,7 +16,8 @@ def read_prediction(prediction_file, prediction_path, sensitive_path):
                 continue
 
             if node1 not in records.keys():     #rozpoznajemy zawód po raz pierwszy
-                records[node1] = {
+                id = str(uuid.uuid4())
+                records[id] = {
                     "node": node1,  #id
                     "pred_label": node2,    #przewidziany zawód
                     "pred_score": pred_score,
@@ -22,13 +25,7 @@ def read_prediction(prediction_file, prediction_path, sensitive_path):
                     "sensitive_label": None  #prawdziwa płeć (nie znamy jeszcze)
                 }
                 if score == 1:
-                    records[node1]["true_label"] = node2    #prawdziwy zawód
-            else:
-                if pred_score > records[node1]["pred_score"]:      #jeśli mamy lepszy wynik przewidywania płci, to zamieniamy
-                    records[node1]["pred_label"] = node2
-                    records[node1]["pred_score"] = pred_score
-                if score == 1:
-                    records[node1]["true_label"] = node2
+                    records[id]["true_label"] = node2    #prawdziwy zawód
 
         print(records)
     return records
@@ -53,34 +50,42 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
 
         all_data = data + data_test + data_valid + data_ind + data_ind_valid + data_ind_test
 
-    for pred in predictions.keys():
+    for id in predictions.keys():
+        pred = predictions[id]["node"]
         #uzupełniamy prawdziwe zawody
-        if predictions[pred]["true_label"] is None:
+        if predictions[id]["true_label"] is None:
             matches = set([line for line in all_data if pred in line and prediction_path in line])
             for match in matches:
                 node1, edge, node2 = match.split()
-                if node1 in predictions.keys():
-                    predictions[node1]["true_label"] = node2
+                # if node1 in predictions.keys():
+                #     predictions[node1]["true_label"] = node2
+                for other_id, other_record in predictions.items():
+                    if other_record["node"] == node1 and other_record["true_label"] is None:
+                        predictions[other_id]["true_label"] = node2
 
             if len(matches) == 0:
-                if pred in updated_predictions.keys():
-                    del updated_predictions[pred]
+                if id in updated_predictions.keys():
+                    del updated_predictions[id]
         else:
             continue
 
-    for pred in predictions.keys():
+    for id in predictions.keys():
+        pred = predictions[id]['node']
         #uzupełniamy płeć (tylko prawdziwą)
-        if predictions[pred]["sensitive_label"] is None:
+        if predictions[id]["sensitive_label"] is None:
             matches = set([line for line in all_data if pred in line and sensitive_path in line])
             for match in matches:
                 node1, edge, node2 = match.split()
-                if node1 in predictions.keys():
-                    predictions[node1]["sensitive_label"] = node2
+                # if node1 in predictions.keys():
+                #     predictions[node1]["sensitive_label"] = node2
+                for other_id, other_record in predictions.items():
+                    if other_record["node"] == node1 and other_record["sensitive_label"] is None:
+                        predictions[other_id]["sensitive_label"] = node2
 
             if len(matches) == 0:
                 print("del", pred)
-                if pred in updated_predictions.keys():
-                    del updated_predictions[pred]
+                if id in updated_predictions.keys():
+                    del updated_predictions[id]
             else:
                 print(matches)
         else:

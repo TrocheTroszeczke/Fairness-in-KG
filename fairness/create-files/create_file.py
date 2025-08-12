@@ -33,14 +33,14 @@ def extend_with_related_lines(source_file, node_file, extended_output_file, edge
 
 extend_with_related_lines(
     source_file='/data/FB15k-237/train.txt',
-    node_file='/data/FB15k-237-filtered_ind/tmp/gender_linie.txt',
-    extended_output_file='/data/FB15k-237-filtered_ind/tmp/train_v0.txt',
-    edge_output_file='/data/FB15k-237-filtered_ind/tmp/edges.txt'
+    node_file='/data/person-data-v2/tmp/nodes.txt',
+    extended_output_file='/data/person-data-v2/tmp/train_v0.txt',
+    edge_output_file='/data/person-data-v2/tmp/edges.txt'
 )
 
 # extend_with_related_lines(
 #     source_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\FB15k-237\\train.txt',
-#     node_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\FB15k-237-filtered_ind\\tmp\\train_part0.txt',
-#     extended_output_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\FB15k-237-filtered_ind\\tmp\\train_v0.txt',
-#     edge_output_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\FB15k-237-filtered_ind\\tmp\\edges.txt'
+#     node_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\/data/person-data-v2\\tmp\\train_part0.txt',
+#     extended_output_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\/data/person-data-v2\\tmp\\train_v0.txt',
+#     edge_output_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\/data/person-data-v2\\tmp\\edges.txt'
 # )

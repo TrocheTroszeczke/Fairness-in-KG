@@ -15,5 +15,6 @@ def get_edges(source_file, keyword, edge_output_file):
         for edge in edges:
             out.writelines(f'{edge}\n')
 
-get_edges("/data/FB15k-237/train.txt", "/people/",
-          "C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data\\tmp\\edges.txt")
+
+get_edges("..\\..\\data\\FB15k-237\\train.txt", "/people/",
+          "..\\..\\data\\person-data-v2\\tmp\\edges.txt")
