@@ -51,15 +51,15 @@ def remove_singleton_node_lines(input_file, output_file):
             out.write(line)
 
 
-remove_some_edges(
-    input_file='../../data/person-data-v2/tmp/train.txt',
-    output_file='../../data/person-data-v2/tmp/train-v1.txt',
-    edges_file='../../data/person-data-v2/tmp/edges.txt'
-)
+# remove_some_edges(
+#     input_file='../../data/person-data-v2/tmp/train.txt',
+#     output_file='../../data/person-data-v2/tmp/train-v1.txt',
+#     edges_file='../../data/person-data-v2/tmp/edges.txt'
+# )
 
 remove_singleton_node_lines(
-    input_file='../../data/person-data-v2/tmp/train-v1.txt',
-    output_file='../../data/person-data-v2/train.txt'
+    input_file='../../data/person-data-v2_ind/test.txt',
+    output_file='../../data/person-data-v2_ind/test.txt'
 )
 
 # remove_some_edges(

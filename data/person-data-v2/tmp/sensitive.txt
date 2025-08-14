@@ -1,1 +1,1 @@
-/people/person/gender
+/people/person/profession

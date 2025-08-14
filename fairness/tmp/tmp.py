@@ -1,5 +1,5 @@
 nodes = []
-input_file = '../../data/person-data-v2/test.txt'
+input_file = '../../data/person-data-v2_ind/test.txt'
 sensitive_edge = '/people/person/profession'
 
 with open(input_file, 'r', encoding='utf-8') as f:

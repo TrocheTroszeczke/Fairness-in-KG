@@ -48,7 +48,7 @@ def filter_lines_by_nodes_and_edges(source_file, nodes_file, edges_file, output_
 # Krok 2: Przefiltruj nowy plik na podstawie tych nodów i krawędzi
 filter_lines_by_nodes_and_edges(
     source_file='../../data/FB15k-237/test.txt',
-    nodes_file='../../data/person-data-v2_ind/tmp/nodes.txt',
+    nodes_file='../../data/person-data-v2/tmp/nodes.txt',
     edges_file='../../data/person-data-v2/tmp/sensitive.txt',
-    output_file='../../data/person-data-v2_ind/test.txt'
+    output_file='../../data/person-data-v2/test.txt'
 )

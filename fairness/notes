@@ -28,8 +28,24 @@ gender:
 AUC 0.503100754382668
 AUC-PR 0.525704357676418
 
-dodawać 1 do tych rekomendacji, które są najwyższe (lub odejmować te, które są niewybrane);
+1. dodawać 1 do tych rekomendacji, które są najwyższe (lub odejmować te, które są niewybrane);
 np. mężczyzna 0.856 kobieta 0.82 -> m 0.856 k 0.82-1= -0.18
+2. inna opcja: zmieniać wartości na minus
+
+pisanie:
+metodyka mierzenia fairness w grafach wiedzy: opisać implementację i dlaczego w grafach wiedzy trzeba tak
+
+analiza wyników -> % dobrze odgadniętych kobiet i mężczyzn, jakaś tabelka coś
+
+przetestować, co się stanie, kiedy zawsze będzie mężczyzna (punkty zmieniamy na 1 dla mężczyzn i 0 dla kobiet)
+
+[dodać dla każdej krawędzi oprócz przeciwnej płci jeszcze coś losowego (z 1 rekordu robią się 3)]
+
+biorąc algorytm nakierowany na typ połączeń, a nie na znaczenie, mamy algorytm nakierowany bardziej na fairness niż na accuracy
+(od początku o tym wiedzieliśmy heh)
+
+
+/m/03s9v	/people/person/profession	/m/099md
 
 
 
