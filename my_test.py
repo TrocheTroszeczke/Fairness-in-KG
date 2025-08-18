@@ -47,6 +47,9 @@ class LoadKG:
         index = len(relation2id)
 
         for key in data_:
+            print(key)
+            # print(len(key))
+            # if len(key) > 0:
 
             if key[1] not in relation2id:
                 relation = key[1]
@@ -723,7 +726,6 @@ if __name__ == "__main__":
              '/m/0fnpj', '/m/05z96', '/m/04gc2', '/m/05t4q', '/m/0h9c', '/m/0dxtg',
              '/m/0dz3r', '/m/0cbd2', '/m/0g0vx', '/m/04f2zj', '/m/09jwl']
 
-
         t_neg = ''
         t_neg_name = ''
         t_pos_name = id2entity[t_pos]
@@ -733,6 +735,10 @@ if __name__ == "__main__":
             t_neg_name = "/m/02zsn"
         elif t_pos_name == "/m/02zsn" and r_pos_name == '/people/person/gender':
             t_neg_name = "/m/05zppz"
+        elif t_pos_name == "/tr/05zppz" and r_pos_name == '/people/person/gender':
+            t_neg_name = "/tr/02zsn"
+        elif t_pos_name == "/tr/02zsn" and r_pos_name == '/people/person/gender':
+            t_neg_name = "/tr/05zppz"
         elif t_pos_name in professions:
             t_neg_name = random.choice(professions)
             while t_neg_name == t_pos_name:
@@ -838,7 +844,7 @@ if __name__ == "__main__":
     score_df.loc[len(score_df)] = [f'AUC: {auc_}', f'AUC-PR: {auc_pr}', '', '', '']
 
     print(score_df.head())
-    score_df.to_csv("modified-scores-profession-01.csv", index=False)
+    score_df.to_csv("scores-gender-2-exmpl.csv", index=False)
 
     ######################################################
     # obtain the Hits@N for entity prediction##############
@@ -847,105 +853,107 @@ if __name__ == "__main__":
     selected = list(data_ind_test)
 
     ###Hit at 1#############################
-    # generate the negative samples by randomly replace relation with all the other relaiton
+    # generate the negative samples by randomly replace relation with all the other relation
     Hits_at_1 = 0
     Hits_at_3 = 0
     Hits_at_10 = 0
     MRR_raw = 0.
 
-    # for i in tqdm(range(len(selected)), desc='Hits@N for entity corrupted ranking'):
-    #
-    #     triple_list = list()
-    #
-    #     # score the true triple
-    #     s_pos, r_pos, t_pos = selected[i][0], selected[i][1], selected[i][2]
-    #
-    #     # path_score = path_based_triple_scoring(s_pos, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
-    #
-    #     subg_score = subgraph_triple_scoring(s_pos, r_pos, t_pos, lower_bound, upper_bound_subg, one_hop_ind,
-    #                                          id2relation, model_2)
-    #
-    #     # ave_score = (path_score + subg_score)/float(2)
-    #
-    #     triple_list.append([(s_pos, r_pos, t_pos), subg_score])
-    #
-    #     # generate the 50 random samples
-    #     for sub_i in range(50):
-    #
-    #         # decide to replace the head or tail entity
-    #         number_0 = random.uniform(0, 1)
-    #
-    #         if number_0 < 0.5:  # replace head entity
-    #
-    #             s_neg = random.choice(list(new_ent_set))
-    #
-    #             while ((s_neg, r_pos, t_pos) in data_test) or (
-    #                     (s_neg, r_pos, t_pos) in data_valid) or (
-    #                     (s_neg, r_pos, t_pos) in data) or (
-    #                     (s_neg, r_pos, t_pos) in data_ind) or (
-    #                     (s_neg, r_pos, t_pos) in data_ind_valid) or (
-    #                     (s_neg, r_pos, t_pos) in data_ind_test):
-    #                 s_neg = random.choice(list(new_ent_set))
-    #                 # print(s_neg)
-    #
-    #             # path_score = path_based_triple_scoring(s_neg, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
-    #
-    #             subg_score = subgraph_triple_scoring(s_neg, r_pos, t_pos, lower_bound, upper_bound_subg, one_hop_ind,
-    #                                                  id2relation, model_2)
-    #
-    #             # ave_score = (path_score + subg_score)/float(2)
-    #
-    #             triple_list.append([(s_neg, r_pos, t_pos), subg_score])
-    #
-    #         else:  # replace tail entity
-    #
-    #             t_neg = random.choice(list(new_ent_set))
-    #
-    #             # filter out the existing triples
-    #             while ((s_pos, r_pos, t_neg) in data_test) or (
-    #                     (s_pos, r_pos, t_neg) in data_valid) or (
-    #                     (s_pos, r_pos, t_neg) in data) or (
-    #                     (s_pos, r_pos, t_neg) in data_ind) or (
-    #                     (s_pos, r_pos, t_neg) in data_ind_valid) or (
-    #                     (s_pos, r_pos, t_neg) in data_ind_test):
-    #                 t_neg = random.choice(list(new_ent_set))
-    #                 # print(t_neg)
-    #
-    #             # path_score = path_based_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
-    #
-    #             subg_score = subgraph_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_subg, one_hop_ind,
-    #                                                  id2relation, model_2)
-    #
-    #             # ave_score = (path_score + subg_score)/float(2)
-    #
-    #             triple_list.append([(s_pos, r_pos, t_neg), subg_score])
-    #
-    #     # random shuffle!
-    #     random.shuffle(triple_list)
-    #
-    #     # sort
-    #     sorted_list = sorted(triple_list, key=lambda x: x[-1], reverse=True)
-    #
-    #     p = 0
-    #
-    #     while p < len(sorted_list) and sorted_list[p][0] != (s_pos, r_pos, t_pos):
-    #         p += 1
-    #
-    #     if p == 0:
-    #         Hits_at_1 += 1
-    #
-    #     if p < 3:
-    #         Hits_at_3 += 1
-    #
-    #     if p < 10:
-    #         Hits_at_10 += 1
-    #
-    #     MRR_raw += 1. / float(p + 1.)
-    #
-    # print('Hits@1', Hits_at_1 / (i + 1))
-    # print('Hits@3', Hits_at_3 / (i + 1))
-    # print('Hits@10 (reported in the paper)', Hits_at_10 / (i + 1))
-    # print('MRR', MRR_raw / (i + 1))
+    for i in tqdm(range(len(selected)), desc='Hits@N for entity corrupted ranking'):
+
+        triple_list = list()
+
+        # score the true triple
+        s_pos, r_pos, t_pos = selected[i][0], selected[i][1], selected[i][2]
+
+        # path_score = path_based_triple_scoring(s_pos, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
+
+        subg_score = subgraph_triple_scoring(s_pos, r_pos, t_pos, lower_bound, upper_bound_subg, one_hop_ind,
+                                             id2relation, model_2)
+
+        # ave_score = (path_score + subg_score)/float(2)
+
+        triple_list.append([(s_pos, r_pos, t_pos), subg_score])
+
+        # generate the 50 random samples
+        for sub_i in range(50):
+
+            # decide to replace the head or tail entity
+            number_0 = random.uniform(0, 1)
+
+            if number_0 < 0.5:  # replace head entity
+
+                s_neg = random.choice(list(new_ent_set))
+
+                while ((s_neg, r_pos, t_pos) in data_test) or (
+                        (s_neg, r_pos, t_pos) in data_valid) or (
+                        (s_neg, r_pos, t_pos) in data) or (
+                        (s_neg, r_pos, t_pos) in data_ind) or (
+                        (s_neg, r_pos, t_pos) in data_ind_valid) or (
+                        (s_neg, r_pos, t_pos) in data_ind_test):
+                    s_neg = random.choice(list(new_ent_set))
+                    # print(s_neg)
+
+                # path_score = path_based_triple_scoring(s_neg, r_pos, t_pos, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
+
+                # t_neg = ''
+                # t_neg_name = ''
+                # t_pos_name = id2entity[t_pos]
+                # r_pos_name = id2relation[r_pos]
+
+                # ave_score = (path_score + subg_score)/float(2)
+
+                triple_list.append([(s_neg, r_pos, t_pos), subg_score])
+
+            else:  # replace tail entity
+
+                t_neg = random.choice(list(new_ent_set))
+
+                # filter out the existing triples
+                while ((s_pos, r_pos, t_neg) in data_test) or (
+                        (s_pos, r_pos, t_neg) in data_valid) or (
+                        (s_pos, r_pos, t_neg) in data) or (
+                        (s_pos, r_pos, t_neg) in data_ind) or (
+                        (s_pos, r_pos, t_neg) in data_ind_valid) or (
+                        (s_pos, r_pos, t_neg) in data_ind_test):
+                    t_neg = random.choice(list(new_ent_set))
+                    # print(t_neg)
+
+                # path_score = path_based_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_path, one_hop_ind, id2relation, model)
+
+                subg_score = subgraph_triple_scoring(s_pos, r_pos, t_neg, lower_bound, upper_bound_subg, one_hop_ind,
+                                                     id2relation, model_2)
+
+                # ave_score = (path_score + subg_score)/float(2)
+
+                triple_list.append([(s_pos, r_pos, t_neg), subg_score])
+
+        # random shuffle!
+        random.shuffle(triple_list)
+
+        # sort
+        sorted_list = sorted(triple_list, key=lambda x: x[-1], reverse=True)
+
+        p = 0
+
+        while p < len(sorted_list) and sorted_list[p][0] != (s_pos, r_pos, t_pos):
+            p += 1
+
+        if p == 0:
+            Hits_at_1 += 1
+
+        if p < 3:
+            Hits_at_3 += 1
+
+        if p < 10:
+            Hits_at_10 += 1
+
+        MRR_raw += 1. / float(p + 1.)
+
+    print('Hits@1', Hits_at_1 / (i + 1))
+    print('Hits@3', Hits_at_3 / (i + 1))
+    print('Hits@10 (reported in the paper)', Hits_at_10 / (i + 1))
+    print('MRR', MRR_raw / (i + 1))
 
     ########################################################
     # obtain the Hits@N for relation prediction##############
@@ -960,74 +968,74 @@ if __name__ == "__main__":
     Hits_at_10 = 0
     MRR_raw = 0.
 
-    # for i in tqdm(range(len(selected)), desc='Hits@N for relation corrupted ranking'):
-    #
-    #     s_true, r_true, t_true = selected[i][0], selected[i][1], selected[i][2]
-    #
-    #     # run the path-based scoring
-    #     score_dict_path = path_based_relation_scoring(s_true, t_true, lower_bound, upper_bound_path, one_hop_ind,
-    #                                                   id2relation, model)
-    #
-    #     # run the one-hop neighbour based scoring
-    #     score_dict_subg = subgraph_relation_scoring(s_true, t_true, lower_bound, upper_bound_subg, one_hop_ind,
-    #                                                 id2relation, model_2)
-    #
-    #     # final score dict
-    #     score_dict = defaultdict(float)
-    #
-    #     for r in score_dict_path:
-    #         score_dict[r] += score_dict_path[r]
-    #     for r in score_dict_subg:
-    #         score_dict[r] += score_dict_subg[r]
-    #
-    #     # [... [score, r], ...]
-    #     temp_list = list()
-    #
-    #     for r in id2relation:
-    #
-    #         # again, we only care about initial relation prediciton
-    #         if r % 2 == 0:
-    #
-    #             if r in score_dict:
-    #
-    #                 temp_list.append([score_dict[r], r])
-    #
-    #             else:
-    #
-    #                 temp_list.append([0.0, r])
-    #
-    #     sorted_list = sorted(temp_list, key=lambda x: x[0], reverse=True)
-    #
-    #     p = 0
-    #     exist_tri = 0
-    #
-    #     while p < len(sorted_list) and sorted_list[p][1] != r_true:
-    #
-    #         # moreover, we want to remove existing triples
-    #         if ((s_true, sorted_list[p][1], t_true) in data_test) or (
-    #                 (s_true, sorted_list[p][1], t_true) in data_valid) or (
-    #                 (s_true, sorted_list[p][1], t_true) in data) or (
-    #                 (s_true, sorted_list[p][1], t_true) in data_ind) or (
-    #                 (s_true, sorted_list[p][1], t_true) in data_ind_valid) or (
-    #                 (s_true, sorted_list[p][1], t_true) in data_ind_test):
-    #             exist_tri += 1
-    #
-    #         p += 1
-    #
-    #     if p - exist_tri == 0:
-    #         Hits_at_1 += 1
-    #
-    #     if p - exist_tri < 3:
-    #         Hits_at_3 += 1
-    #
-    #     if p - exist_tri < 10:
-    #         Hits_at_10 += 1
-    #
-    #     MRR_raw += 1. / float(p - exist_tri + 1.)
-    #
-    # print('Hits@1 (reported in the paper)', Hits_at_1 / (i + 1))
-    # print('Hits@3 (reported in the paper)', Hits_at_3 / (i + 1))
-    # print('Hits@10', Hits_at_10 / (i + 1))
-    # print('MRR', MRR_raw / (i + 1))
+    for i in tqdm(range(len(selected)), desc='Hits@N for relation corrupted ranking'):
+
+        s_true, r_true, t_true = selected[i][0], selected[i][1], selected[i][2]
+
+        # run the path-based scoring
+        score_dict_path = path_based_relation_scoring(s_true, t_true, lower_bound, upper_bound_path, one_hop_ind,
+                                                      id2relation, model)
+
+        # run the one-hop neighbour based scoring
+        score_dict_subg = subgraph_relation_scoring(s_true, t_true, lower_bound, upper_bound_subg, one_hop_ind,
+                                                    id2relation, model_2)
+
+        # final score dict
+        score_dict = defaultdict(float)
+
+        for r in score_dict_path:
+            score_dict[r] += score_dict_path[r]
+        for r in score_dict_subg:
+            score_dict[r] += score_dict_subg[r]
+
+        # [... [score, r], ...]
+        temp_list = list()
+
+        for r in id2relation:
+
+            # again, we only care about initial relation prediciton
+            if r % 2 == 0:
+
+                if r in score_dict:
+
+                    temp_list.append([score_dict[r], r])
+
+                else:
+
+                    temp_list.append([0.0, r])
+
+        sorted_list = sorted(temp_list, key=lambda x: x[0], reverse=True)
+
+        p = 0
+        exist_tri = 0
+
+        while p < len(sorted_list) and sorted_list[p][1] != r_true:
+
+            # moreover, we want to remove existing triples
+            if ((s_true, sorted_list[p][1], t_true) in data_test) or (
+                    (s_true, sorted_list[p][1], t_true) in data_valid) or (
+                    (s_true, sorted_list[p][1], t_true) in data) or (
+                    (s_true, sorted_list[p][1], t_true) in data_ind) or (
+                    (s_true, sorted_list[p][1], t_true) in data_ind_valid) or (
+                    (s_true, sorted_list[p][1], t_true) in data_ind_test):
+                exist_tri += 1
+
+            p += 1
+
+        if p - exist_tri == 0:
+            Hits_at_1 += 1
+
+        if p - exist_tri < 3:
+            Hits_at_3 += 1
+
+        if p - exist_tri < 10:
+            Hits_at_10 += 1
+
+        MRR_raw += 1. / float(p - exist_tri + 1.)
+
+    print('Hits@1 (reported in the paper)', Hits_at_1 / (i + 1))
+    print('Hits@3 (reported in the paper)', Hits_at_3 / (i + 1))
+    print('Hits@10', Hits_at_10 / (i + 1))
+    print('MRR', MRR_raw / (i + 1))
 
 
