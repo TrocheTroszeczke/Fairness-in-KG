@@ -730,45 +730,54 @@ if __name__ == "__main__":
         t_neg_name = ''
         t_pos_name = id2entity[t_pos]
         r_pos_name = id2relation[r_pos]
+        r_neg_name = r_pos_name
 
-        if t_pos_name == "/m/05zppz" and r_pos_name == '/people/person/gender':
+        if t_pos_name == "/m/05zppz":
             t_neg_name = "/m/02zsn"
-        elif t_pos_name == "/m/02zsn" and r_pos_name == '/people/person/gender':
+        elif t_pos_name == "/m/02zsn":
             t_neg_name = "/m/05zppz"
-        elif t_pos_name == "/tr/05zppz" and r_pos_name == '/people/person/gender':
+
+        elif t_pos_name == "/tr/05zppz":
             t_neg_name = "/tr/02zsn"
-        elif t_pos_name == "/tr/02zsn" and r_pos_name == '/people/person/gender':
+        elif t_pos_name == "/tr/02zsn":
             t_neg_name = "/tr/05zppz"
+
         elif t_pos_name in professions:
             t_neg_name = random.choice(professions)
             while t_neg_name == t_pos_name:
                 t_neg_name = random.choice(professions)
 
+        if r_pos_name == "/people/person/gender1":
+            r_neg_name = "/people/person/gender2"
+        elif r_pos_name == "/people/person/gender2":
+            r_neg_name = "/people/person/gender1"
+
         if t_neg_name != '':
             t_neg = entity2id[t_neg_name]
 
         # filter out the existing triples
-        if t_neg != '' and (s_pos, r_pos) not in s_rel_list:
-            if not (((s_pos, r_pos, t_neg) in data_test) or (
-                    (s_pos, r_pos, t_neg) in data_valid) or (
-                           (s_pos, r_pos, t_neg) in data) or (
-                           (s_pos, r_pos, t_neg) in data_ind) or (
-                           (s_pos, r_pos, t_neg) in data_ind_valid) or (
-                           (s_pos, r_pos, t_neg) in data_ind_test)):
-                neg_triples.append((s_pos, r_pos, t_neg))
-                s_rel_list.append((s_pos, r_pos))
+        r_neg = relation2id[r_neg_name]
+        if t_neg != '' and (s_pos, r_neg) not in s_rel_list:
+            if not (((s_pos, r_neg, t_neg) in data_test) or (
+                    (s_pos, r_neg, t_neg) in data_valid) or (
+                           (s_pos, r_neg, t_neg) in data) or (
+                           (s_pos, r_neg, t_neg) in data_ind) or (
+                           (s_pos, r_neg, t_neg) in data_ind_valid) or (
+                           (s_pos, r_neg, t_neg) in data_ind_test)):
+                neg_triples.append((s_pos, r_neg, t_neg))
+                s_rel_list.append((s_pos, r_neg))
             elif t_pos_name in professions:
                 while t_neg_name == t_pos_name or \
-                    (((s_pos, r_pos, t_neg) in data_test) or (
-                            (s_pos, r_pos, t_neg) in data_valid) or (
-                             (s_pos, r_pos, t_neg) in data) or (
-                             (s_pos, r_pos, t_neg) in data_ind) or (
-                             (s_pos, r_pos, t_neg) in data_ind_valid) or (
-                             (s_pos, r_pos, t_neg) in data_ind_test)):
+                    (((s_pos, r_neg, t_neg) in data_test) or (
+                            (s_pos, r_neg, t_neg) in data_valid) or (
+                             (s_pos, r_neg, t_neg) in data) or (
+                             (s_pos, r_neg, t_neg) in data_ind) or (
+                             (s_pos, r_neg, t_neg) in data_ind_valid) or (
+                             (s_pos, r_neg, t_neg) in data_ind_test)):
                     t_neg_name = random.choice(professions)
                     t_neg = entity2id[t_neg_name]
-                neg_triples.append((s_pos, r_pos, t_neg))
-                s_rel_list.append((s_pos, r_pos))
+                neg_triples.append((s_pos, r_neg, t_neg))
+                s_rel_list.append((s_pos, r_neg))
         else:
             pos_triples_tmp.remove(pos_triples[i])
 
@@ -781,6 +790,8 @@ if __name__ == "__main__":
 
     # combine all triples
     all_triples = pos_triples + neg_triples
+    print("pos_triples", pos_triples)
+    print("neg_triples", neg_triples)
 
     # obtain the label array
     arr1 = np.ones((len(pos_triples),))
@@ -798,6 +809,7 @@ if __name__ == "__main__":
     score_df = pd.DataFrame(columns=['source', 'relation', 'target', 'true_label', 'score'])
 
     with open(f'fairness/{data_name}.txt', "w") as f:
+        print("all triples", all_triples)
         print("all triples [0]", all_triples[0])
         for i in tqdm(range(len(all_triples)), desc='relation corrupted ranking: evaluating'):
 
@@ -829,10 +841,16 @@ if __name__ == "__main__":
     # print(id2entity[s], id2relation[r], id2entity[t])
     # print(score_df.head())
 
-    idx_min = score_df.groupby(["source", "relation"])["score"].idxmin()
+    # idx_min = score_df.groupby(["source", "relation"])["score"].idxmin()
+    # score_df.loc[idx_min, "score"] = 0
+    # # score_df.loc[idx_min, "score"] = -1 * score_df.loc[idx_min, "score"]
+    # idx_max = score_df.groupby(["source", "relation"])["score"].idxmax()
+    # score_df.loc[idx_max, "score"] = 1
+
+    idx_min = score_df.groupby(["source"])["score"].idxmin()
     score_df.loc[idx_min, "score"] = 0
     # score_df.loc[idx_min, "score"] = -1 * score_df.loc[idx_min, "score"]
-    idx_max = score_df.groupby(["source", "relation"])["score"].idxmax()
+    idx_max = score_df.groupby(["source"])["score"].idxmax()
     score_df.loc[idx_max, "score"] = 1
 
     # print('evaluating scores', i, len(all_triples))
@@ -844,7 +862,7 @@ if __name__ == "__main__":
     score_df.loc[len(score_df)] = [f'AUC: {auc_}', f'AUC-PR: {auc_pr}', '', '', '']
 
     print(score_df.head())
-    score_df.to_csv("scores-gender-2-exmpl.csv", index=False)
+    score_df.to_csv("tr-sensowne.csv", index=False)
 
     ######################################################
     # obtain the Hits@N for entity prediction##############

@@ -47,8 +47,8 @@
 /tr/06c44	/people/person/profession	/tr/0kyk
 /tr/0c94fn	/people/person/nationality	/tr/09c7w0
 /tr/041rx	/people/ethnicity/people	/tr/04kr63w
-/tr/0bwgc_	/people/person/gender2	/tr/02zsntr/02zsn
-/tr/05d8vw	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0bwgc_	/people/person/gender2	/tr/02zsn
+/tr/05d8vw	/people/person/gender2	/tr/02zsn
 /tr/07cjqy	/people/person/place_of_birth	/tr/0rd5k
 /tr/05cl2w	/people/person/gender1	/tr/05zppz
 /tr/0xnvg	/people/ethnicity/people	/tr/0478__m
@@ -59,7 +59,7 @@
 /tr/041rx	/people/ethnicity/people	/tr/05zjx
 /tr/09kr66	/people/ethnicity/languages_spoken	/tr/06b_j
 /tr/0725ny	/people/person/gender1	/tr/05zppz
-/tr/0gs7x	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0gs7x	/people/person/gender2	/tr/02zsn
 /tr/0gcdzz	/people/person/gender1	/tr/05zppz
 /tr/08s_lw	/people/person/nationality	/tr/09c7w0
 /tr/0x3n	/people/person/religion	/tr/0c8wxp
@@ -73,7 +73,7 @@
 /tr/04mhxx	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
 /tr/0h1_w	/people/person/religion	/tr/0631_
 /tr/0fr7nt	/people/person/gender1	/tr/05zppz
-/tr/05hdf	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/05hdf	/people/person/gender2	/tr/02zsn
 /tr/04n65n	/people/person/nationality	/tr/09c7w0
 /tr/059t6d	/people/person/gender1	/tr/05zppz
 /tr/04s5_s	/people/person/profession	/tr/0dz3r
@@ -100,7 +100,7 @@
 /tr/053y0s	/people/person/profession	/tr/0fnpj
 /tr/0f6_x	/people/person/places_lived./people/place_lived/location	/tr/059rby
 /tr/0bkmf	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
-/tr/0bqsy	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0bqsy	/people/person/gender2	/tr/02zsn
 /tr/04s430	/people/person/nationality	/tr/09c7w0
 /tr/07k2p6	/people/person/nationality	/tr/09c7w0
 /tr/0m9c1	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
@@ -146,11 +146,11 @@
 /tr/070bjw	/people/person/nationality	/tr/09c7w0
 /tr/07_m9_	/people/person/religion	/tr/0c8wxp
 /tr/049_zz	/people/person/gender1	/tr/05zppz
-/tr/05dbf	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/05dbf	/people/person/gender2	/tr/02zsn
 /tr/042d1	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
 /tr/0523v5y	/people/person/nationality	/tr/09c7w0
 /tr/045bs6	/people/person/nationality	/tr/0d060g
-/tr/0kjrx	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0kjrx	/people/person/gender2	/tr/02zsn
 /tr/06m61	/people/person/profession	/tr/09jwl
 /tr/04ztj	/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony	/tr/0n2z
 /tr/07hbxm	/people/person/nationality	/tr/0j5g9
@@ -163,11 +163,11 @@
 /tr/0bs1g5r	/people/person/nationality	/tr/09c7w0
 /tr/05c4fys	/people/person/places_lived./people/place_lived/location	/tr/04jpl
 /tr/04xzm	/people/person/profession	/tr/0fj9f
-/tr/05szp	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/05szp	/people/person/gender2	/tr/02zsn
 /tr/0bc71w	/people/deceased_person/place_of_death	/tr/0cc56
 /tr/0499lc	/people/person/religion	/tr/0c8wxp
 /tr/0dw3l	/people/person/profession	/tr/0nbcg
-/tr/06tp4h	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/06tp4h	/people/person/gender2	/tr/02zsn
 /tr/07bch9	/people/ethnicity/people	/tr/06c0j
 /tr/041rx	/people/ethnicity/people	/tr/04zn7g
 /tr/0x67	/people/ethnicity/people	/tr/0blbxk
@@ -187,7 +187,7 @@
 /tr/0m0hw	/people/person/profession	/tr/0kyk
 /tr/058s44	/people/person/gender1	/tr/05zppz
 /tr/06fxnf	/people/person/place_of_birth	/tr/04jpl
-/tr/049468	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/049468	/people/person/gender2	/tr/02zsn
 /tr/0dfrq	/people/person/profession	/tr/05z96
 /tr/0jw67	/people/person/nationality	/tr/09c7w0
 /tr/0mbw0	/people/person/nationality	/tr/09c7w0
@@ -199,7 +199,7 @@
 /tr/0h53p1	/people/person/profession	/tr/0dxtg
 /tr/041rx	/people/ethnicity/people	/tr/04n7gc6
 /tr/04xjp	/people/person/profession	/tr/05z96
-/tr/0b66qd	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0b66qd	/people/person/gender2	/tr/02zsn
 /tr/09h4b5	/people/person/profession	/tr/09jwl
 /tr/0gy6z9	/people/person/gender1	/tr/05zppz
 /tr/055sjw	/people/person/nationality	/tr/09c7w0
@@ -214,9 +214,9 @@
 /tr/099d4	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
 /tr/08959	/people/deceased_person/place_of_death	/tr/0rh6k
 /tr/04ztj	/people/marriage_union_type/unions_of_this_type./people/marriage/location_of_ceremony	/tr/0ccvx
-/tr/042gr4	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/042gr4	/people/person/gender2	/tr/02zsn
 /tr/0gd9k	/people/person/religion	/tr/0c8wxp
-/tr/0dyztm	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0dyztm	/people/person/gender2	/tr/02zsn
 /tr/0kbg6	/people/person/profession	/tr/0cbd2
 /tr/04258w	/people/person/gender1	/tr/05zppz
 /tr/09prnq	/people/person/profession	/tr/0nbcg
@@ -415,7 +415,7 @@
 /tr/04xjp	/people/person/profession	/tr/0kyk
 /tr/0gp9mp	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
 /tr/05nn4k	/people/person/gender1	/tr/05zppz
-/tr/0htlr	/people/person/gender2	/tr/02zsntr/02zsn
+/tr/0htlr	/people/person/gender2	/tr/02zsn
 /tr/09p06	/people/person/spouse_s./people/marriage/type_of_union	/tr/04ztj
 /tr/053ksp	/people/person/profession	/tr/0dxtg
 /tr/04v7kt	/people/person/nationality	/tr/07ssc

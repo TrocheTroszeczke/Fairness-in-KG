@@ -58,8 +58,8 @@ def remove_singleton_node_lines(input_file, output_file):
 # )
 
 remove_singleton_node_lines(
-    input_file='../../data/person-data-tr_ind/test.txt',
-    output_file='../../data/person-data-tr_ind/test.txt'
+    input_file='../../data/person-data-tr-v2_ind/test.txt',
+    output_file='../../data/person-data-tr-v2_ind/test.txt'
 )
 
 # remove_some_edges(
