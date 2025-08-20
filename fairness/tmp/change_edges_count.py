@@ -9,7 +9,7 @@ def balance_edges(lines_to_change, edges_to_change, mapping):
         min_count = min(counts.get(e, 0) for e in edges_to_change)
         max_count = max(counts.get(e, 0) for e in edges_to_change)
 
-        if min_count == max_count:
+        if min_count == max_count or min_count + 1 == max_count or min_count - 1 == max_count:
             break
 
         most_common_e = max(edges_to_change, key=lambda x: counts.get(x, 0))
@@ -29,12 +29,16 @@ def balance_edges(lines_to_change, edges_to_change, mapping):
 
 
 nodes = []
-input_file = '../../data/person-data-tr-v2-rowno_ind/train.txt'
-output_file = '../../data/person-data-tr-v2-rowno_ind/train.txt'
-edges_to_change = ['/people/person/gender1', '/people/person/gender2']
+input_file = '../../data/person-data-tr-v2-prop/train.txt'
+output_file = '../../data/person-data-tr-v2-prop/train.txt'
+edges_to_change = ['/people/person/gender1', '/people/person/gender2',
+                   '/people/person/gender3','/people/person/gender4','/people/person/gender5']
 mapping = {
     '/people/person/gender1': "/m/05zppz",
-    '/people/person/gender2': "/m/02zsn"
+    '/people/person/gender2': "/m/02zsn",
+    '/people/person/gender3': "/m/05zppz",
+    '/people/person/gender4': "/m/05zppz",
+    '/people/person/gender5': "/m/05zppz"
 }
 count = 996 / 2
 
