@@ -39,16 +39,16 @@ def filter_lines_by_nodes_and_edges(source_file, nodes_file, edges_file, output_
         out.writelines(filtered_lines)
 
 # Krok 1: Wyodrębnij nody i krawędzie z bazowego podgrafu
-# extract_nodes_and_edges(
-#     input_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr_ind\\train.txt',
-#     nodes_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr_ind\\tmp\\nodes.txt',
-#     edges_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr_ind\\tmp\\edges.txt'
-# )
+extract_nodes_and_edges(
+    input_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr-v2\\train.txt',
+    nodes_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr-v2\\tmp\\nodes.txt',
+    edges_file='C:\\Users\\Ania\\Desktop\\fairness-in-kg\\sialp-fork\\data\\person-data-tr-v2\\tmp\\edges.txt'
+)
 
 # Krok 2: Przefiltruj nowy plik na podstawie tych nodów i krawędzi
-filter_lines_by_nodes_and_edges(
-    source_file='../../data/person-data-tr-v2_ind/valid.txt',
-    nodes_file='../../data/person-data-tr-v2_ind/tmp/nodes.txt',
-    edges_file='../../data/person-data-tr-v2_ind/tmp/edges.txt',
-    output_file='../../data/person-data-tr-v2_ind/valid.txt'
-)
+# filter_lines_by_nodes_and_edges(
+#     source_file='../../data/person-data-tr-v2_ind/valid.txt',
+#     nodes_file='../../data/person-data-tr-v2_ind/tmp/nodes.txt',
+#     edges_file='../../data/person-data-tr-v2_ind/tmp/edges.txt',
+#     output_file='../../data/person-data-tr-v2_ind/valid.txt'
+# )

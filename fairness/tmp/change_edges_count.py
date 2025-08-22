@@ -29,18 +29,17 @@ def balance_edges(lines_to_change, edges_to_change, mapping):
 
 
 nodes = []
-input_file = '../../data/person-data-tr-v2-prop/train.txt'
-output_file = '../../data/person-data-tr-v2-prop/train.txt'
+input_file = '../../data/person-data-tr-v2-prop/valid.txt'
+output_file = '../../data/person-data-tr-v2-prop/valid.txt'
 edges_to_change = ['/people/person/gender1', '/people/person/gender2',
-                   '/people/person/gender3','/people/person/gender4','/people/person/gender5']
+                   '/people/person/gender3','/people/person/gender4', '/people/person/gender5']
 mapping = {
     '/people/person/gender1': "/m/05zppz",
     '/people/person/gender2': "/m/02zsn",
     '/people/person/gender3': "/m/05zppz",
     '/people/person/gender4': "/m/05zppz",
-    '/people/person/gender5': "/m/05zppz"
+    '/people/person/gender5': "/m/05zppz",
 }
-count = 996 / 2
 
 lines = []
 lines_to_change = []
