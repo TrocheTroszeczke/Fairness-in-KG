@@ -29,16 +29,20 @@ def balance_edges(lines_to_change, edges_to_change, mapping):
 
 
 nodes = []
-input_file = '../../data/person-data-tr-v2-prop/valid.txt'
-output_file = '../../data/person-data-tr-v2-prop/valid.txt'
-edges_to_change = ['/people/person/gender1', '/people/person/gender2',
-                   '/people/person/gender3','/people/person/gender4', '/people/person/gender5']
+input_file = '../../data/person-data-prof-prop_ind/train.txt'
+output_file = '../../data/person-data-prof-prop_ind/train.txt'
+edges_to_change = ['/people/person/profession1', '/people/person/profession2',
+                   '/people/person/profession3', '/people/person/profession4',
+                   '/people/person/profession5', '/people/person/profession6',
+                   '/people/person/profession7']
 mapping = {
-    '/people/person/gender1': "/m/05zppz",
-    '/people/person/gender2': "/m/02zsn",
-    '/people/person/gender3': "/m/05zppz",
-    '/people/person/gender4': "/m/05zppz",
-    '/people/person/gender5': "/m/05zppz",
+    '/people/person/profession1': "/m/0frz0",
+    '/people/person/profession2': "/m/0cbd2",
+    '/people/person/profession3': "/m/05snw",
+    '/people/person/profession4': "/m/0dgd_",
+    '/people/person/profession5': "/m/0fj9f",
+    '/people/person/profession6': "/m/05t4q",
+    '/people/person/profession7': "/m/0kyk",
 }
 
 lines = []

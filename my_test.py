@@ -721,10 +721,11 @@ if __name__ == "__main__":
         # decide to replace the tail entity
 
         professions = \
-            ['/m/05vyk', '/m/0dgd_', '/m/0gl2ny2', '/m/05sxg2', '/m/0d2b38', '/m/06q2q',
-             '/m/0d8qb', '/m/04s2z', '/m/089fss', '/m/099md', '/m/0fj9f', '/m/0d1pc',
-             '/m/0fnpj', '/m/05z96', '/m/04gc2', '/m/05t4q', '/m/0h9c', '/m/0dxtg',
-             '/m/0dz3r', '/m/0cbd2', '/m/0g0vx', '/m/04f2zj', '/m/09jwl']
+            ["/m/0frz0", "/m/0cbd2", "/m/05snw", "/m/0dgd_", "/m/0fj9f", "/m/05t4q", "/m/0kyk"]
+            # ['/m/05vyk', '/m/0dgd_', '/m/0gl2ny2', '/m/05sxg2', '/m/0d2b38', '/m/06q2q',
+            #  '/m/0d8qb', '/m/04s2z', '/m/089fss', '/m/099md', '/m/0fj9f', '/m/0d1pc',
+            #  '/m/0fnpj', '/m/05z96', '/m/04gc2', '/m/05t4q', '/m/0h9c', '/m/0dxtg',
+            #  '/m/0dz3r', '/m/0cbd2', '/m/0g0vx', '/m/04f2zj', '/m/09jwl']
 
         t_neg = ''
         t_neg_name = ''
@@ -751,6 +752,20 @@ if __name__ == "__main__":
             r_neg_name = "/people/person/gender2"
         elif r_pos_name == "/people/person/gender2":
             r_neg_name = "/people/person/gender1"
+        elif t_neg_name == "/m/0frz0" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession1"
+        elif t_neg_name == "/m/0cbd2" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession2"
+        elif t_neg_name == "/m/05snw" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession3"
+        elif t_neg_name == "/m/0dgd_" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession4"
+        elif t_neg_name == "/m/0fj9f" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession5"
+        elif t_neg_name == "/m/05t4q" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession6"
+        elif t_neg_name == "/m/0kyk" and r_pos_name .startswith("/people/person/profession"):
+            r_neg_name = "/people/person/profession7"
 
         if t_neg_name != '':
             t_neg = entity2id[t_neg_name]
