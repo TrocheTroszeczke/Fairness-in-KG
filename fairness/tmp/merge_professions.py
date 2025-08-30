@@ -1,13 +1,13 @@
 lines = []
-input_file = '../../data/person-data-prof_ind/test.txt'
-output_file = '../../data/person-data-prof_ind/test.txt'
-e1 = ['/m/0frz0', '/m/0np9r', '/m/04f2zj', '/m/0q04f', '/m/0dxtg', '/m/09jwl', '/m/05vyk']
-e2 = ['/m/0cbd2', '/m/0n1h', '/m/0nbcg', '/m/05xjb', '/m/0dz3r', '/m/0d1pc', '/m/089fss', '/m/03sbb']
-e3 = ['/m/05snw', '/m/04gc2', '/m/0fnpj', '/m/099md', '/m/06wkj0', '/m/05z96', '/m/08z956', '/m/066dv']
-e4 = ['/m/0dgd_', '/m/0d8qb', '/m/0mn6', '/m/0g0vx', '/m/0gl2ny2', '/m/0xzm', '/m/06q2q', '/m/0htp']
-e5 = ['/m/0fj9f', '/m/04gf49c', '/m/0g7nc', '/m/080ntlp', '/m/05sxg2', '/m/0dl08', '/m/0gbbt', '/m/064xm0']
-e6 = ['/m/05t4q', '/m/094hwz', '/m/09lbv', '/m/0747nrk', '/m/0lgw7', '/m/04pyp5', '/m/0557q', '/m/07s467s']
-e7 = ['/m/0kyk', '/m/0jgxn', '/m/04s2z', '/m/047rgpy', '/m/0d2b38', '/m/09j9h', '/m/0d2ww', '/m/067nv']
+input_file = '../../data/person-data-prof-gender/test.txt'
+output_file = '../../data/person-data-prof-gender/test.txt'
+e1 = ['/tr/0frz0', '/tr/0np9r', '/tr/04f2zj', '/tr/0q04f', '/tr/0dxtg', '/tr/09jwl', '/tr/05vyk']
+e2 = ['/tr/0cbd2', '/tr/0n1h', '/tr/0nbcg', '/tr/05xjb', '/tr/0dz3r', '/tr/0d1pc', '/tr/089fss', '/tr/03sbb']
+e3 = ['/tr/05snw', '/tr/04gc2', '/tr/0fnpj', '/tr/099md', '/tr/06wkj0', '/tr/05z96', '/tr/08z956', '/tr/066dv']
+e4 = ['/tr/0dgd_', '/tr/0d8qb', '/tr/0mn6', '/tr/0g0vx', '/tr/0gl2ny2', '/tr/0xzm', '/tr/06q2q', '/tr/0htp']
+e5 = ['/tr/0fj9f', '/tr/04gf49c', '/tr/0g7nc', '/tr/080ntlp', '/tr/05sxg2', '/tr/0dl08', '/tr/0gbbt', '/tr/064xm0']
+e6 = ['/tr/05t4q', '/tr/094hwz', '/tr/09lbv', '/tr/0747nrk', '/tr/0lgw7', '/tr/04pyp5', '/tr/0557q', '/tr/07s467s']
+e7 = ['/tr/0kyk', '/tr/0jgxn', '/tr/04s2z', '/tr/047rgpy', '/tr/0d2b38', '/tr/09j9h', '/tr/0d2ww', '/tr/067nv']
 
 
 nodes1 = []

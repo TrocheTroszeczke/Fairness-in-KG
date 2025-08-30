@@ -1,4 +1,3 @@
-source,relation,target,true_label,score
 /m/05mlqj,/people/person/profession4,/m/0dgd_,0.0,0.0
 /m/0c31_,/people/person/profession4,/m/0dgd_,0.0,1.0
 /m/0byfz,/people/person/profession7,/m/0kyk,0.0,0.0
@@ -685,4 +684,3 @@ source,relation,target,true_label,score
 /m/058s57,/people/person/gender2,/m/02zsn,1.0,1.0
 /m/05myd2,/people/person/gender1,/m/05zppz,1.0,0.0
 /m/0f_y9,/people/person/profession2,/m/0cbd2,1.0,0.0
-AUC: 0.5686193677804317,AUC-PR: 0.5644529070673694,,,

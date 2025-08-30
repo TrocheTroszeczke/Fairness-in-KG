@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 
 def read_prediction(prediction_file, prediction_path, sensitive_path):
     records = {}
@@ -6,9 +7,13 @@ def read_prediction(prediction_file, prediction_path, sensitive_path):
     # zapisujemy zawody
     with open(prediction_file, 'r', encoding='utf-8') as f:
         for line in f:
-            node1, edge, node2, score, pred_score = line.strip().split()
+            node1, edge, node2, score, pred_score = line.strip().split(',')
+            # edge = edge[:-1]
+            print(score)
             score = int(float(score))
             pred_score = float(pred_score)
+            print(edge)
+            print(prediction_path)
 
             if edge != prediction_path:  #filtrujemy rekordy ze znanym zawodem
                 continue
@@ -59,6 +64,7 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
             matches = set([line for line in all_data if pred in line and prediction_path in line])
             for match in matches:
                 node1, edge, node2 = match.split()
+
                 if node1 in predictions.keys():
                     predictions[node1]["true_label"] = node2
 
@@ -91,15 +97,26 @@ def read_sources(predictions, source_folder, sensitive_path, prediction_path):
 
 if __name__ == "__main__":
     # przewidujemy zawód i jeśli znamy prawdziwy, to go zapisujemy
+    lines = []
+    input_file="../../data/person-data-prof-gender-prop_ind/train.txt"
+    with open(input_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            node1, edge, node2 = line.split()
+            lines.append([node1, edge, node2, "1.0", "1.0"])
+
+    # zapis tabeli do pliku CSV
+    df_lines = pd.DataFrame(lines)
+    df_lines.to_csv("../../person-data-prof-gender-prop.csv", index=False, encoding="utf-8")
+
     tmp_prediction_dict = read_prediction(
-        prediction_file='../person-data.txt',
-        sensitive_path='/people/person/nationality',
+        prediction_file='../../person-data-prof-gender-prop.csv',
+        sensitive_path='/people/person/gender',
         prediction_path='/people/person/profession'
     )
     prediction_dict = read_sources(
         predictions=tmp_prediction_dict,
-        source_folder="person-data",
-        sensitive_path='/people/person/nationality',
+        source_folder="person-data-prof-gender",
+        sensitive_path='/people/person/gender',
         prediction_path='/people/person/profession'
     )
 
@@ -118,7 +135,7 @@ if __name__ == "__main__":
     print(prediction_dict.values())
 
     # output_file = "{file}-{sensitive}-{prediction}.csv"
-    output_file = "person-data-nationality-profession-v2.csv"
+    output_file = "person-data-tr-gender-profession-prop.csv"
 
     with open(output_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)

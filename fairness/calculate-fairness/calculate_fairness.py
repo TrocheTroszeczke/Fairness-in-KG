@@ -2,7 +2,7 @@ import pandas as pd
 import itertools
 
 # read data
-df = pd.read_csv("person-data-gender-profession.csv")
+df = pd.read_csv("person-data-tr-gender-profession.csv")
 pred_col = "predicted_label"
 true_col = "true_label"
 sens_col = "sensitive_label"

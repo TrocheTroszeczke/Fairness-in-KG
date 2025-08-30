@@ -2,7 +2,7 @@ import networkx as nx
 from pyvis.network import Network
 
 triples = []
-with open("/data/person-data/train.txt", "r", encoding="utf-8") as f:
+with open("../../data/person-data-prof-gender/test.txt", "r", encoding="utf-8") as f:
     for line in f:
         parts = line.strip().split("\t")
         if len(parts) == 3:
